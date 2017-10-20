@@ -16,3 +16,10 @@ to an AppWorks Gateway 16.2 instance. All you need to do is run `mvn clean packa
 
 Please review the pom.xml for the build process, but more importantly the service's code itself for information on
 how the AppWorks SDK works and how to build a minimal but functional AppWorks Spring MVC service.
+
+## Deploying the service
+
+This service makes use of features introduced in AppWorks 16.3.0 so deploy this service via the AppWorks 16.3.0 
+administration UI. Once installed ensure it is enabled via the UI, and then you should be able to make a request 
+to `http://{yourhost}:8080/appworks-spring-mvc-service/api/welcome`, and this should be served by the 
+`com.appworks.web.xml.less.ExampleController` Spring MVC controller.
