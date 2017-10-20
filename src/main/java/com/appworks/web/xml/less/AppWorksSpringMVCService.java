@@ -1,3 +1,6 @@
+/**
+ * Copyright © 2017 Open Text.  All Rights Reserved.
+ */
 package com.appworks.web.xml.less;
 
 import com.opentext.otag.sdk.client.v3.ServiceClient;
