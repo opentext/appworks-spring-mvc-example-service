@@ -4,7 +4,7 @@ The project contains example code for an AppWorks 16.3.0 Service that uses the
 Spring MVC framework and does not contain a web.xml file. The service makes use
 of the `servlet3service` app type (see app.properties) introduced in AppWorks 16.3.0.
 
-Please the following link for general information of AppWorks Services.
+Please see the following link for general information of AppWorks Services.
 
 https://developer.opentext.com/awd/resources/articles/15239948/developer+guide+opentext+appworks+16+service+development+kit.
 
