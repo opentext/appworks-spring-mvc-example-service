@@ -1,0 +1,176 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.appworks.web.xml.less</groupId>
+    <artifactId>appworks-web-xml-less-service</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>Web.xml-less AppWorks Service</name>
+    
+    <properties>
+        <spring.scope>compile</spring.scope>
+        <spring.version>4.0.5.RELEASE</spring.version>
+        <spring.web.scope>compile</spring.web.scope>
+        <app.properties.version>16.3.0</app.properties.version>
+
+        <!-- Output artifact (zip) properties. -->
+        <appworks.service.name>appworks-spring-mvc-service</appworks.service.name>
+        <appworks.service.version>${app.properties.version}</appworks.service.version>
+        <appworks.service.zip.name>${appworks.service.name}_${appworks.service.version}</appworks.service.zip.name>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.web.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+            <scope>${spring.scope}</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.opentext.otag.sdk</groupId>
+            <artifactId>otag-service-development-kit</artifactId>
+            <version>16.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- Do not include these files in the war, they are top level zip entries
+                    in our "deployable" artifact, AppWorks services are packaged in a
+                    particular structure. -->
+                <excludes>
+                    <exclude>**/app.properties</exclude>
+                    <exclude>**/icon.png</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <!-- Get around the fact this plugin usually want a web.xml file to be present -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/resources</directory>
+                            <!-- "filter" the properties we set in the pom into the app.properties file,
+                             this is the meta-data file the AppWorks Gateway uses to validate the service -->
+                            <filtering>true</filtering>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+
+            <!-- We build the AppWorks style zip using the Maven assembly plugin, please
+             read this modules assembly/assembly.xml file for details. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-distribution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${appworks.service.zip.name}</finalName>
+                            <descriptors>
+                                <descriptor>assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>module-spring</id>
+            <properties>
+                <spring.web.scope>provided</spring.web.scope>
+                <spring.scope>provided</spring.scope>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>src/main/webapp-spring-module</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
