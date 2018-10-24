@@ -66,8 +66,9 @@ public class ExampleController {
     @RequestMapping(value = "/notifications", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity sendNotification(@RequestParam("username") String username,
+                                           @RequestParam("targetApp") String targetApp,
                                            @RequestParam(value = "push", defaultValue = "true") boolean sendPush) {
-        return gatewaySdkBean.sendTestNotification(username, sendPush);
+        return gatewaySdkBean.sendTestNotification(username, sendPush, targetApp);
     }
 
 }

@@ -18,6 +18,6 @@ public interface GatewaySdkBean {
 
     ResponseEntity sendTestEmail(String from, String to, boolean sendAsync);
 
-    ResponseEntity sendTestNotification(String username, boolean sendPush);
+    ResponseEntity sendTestNotification(String username, boolean sendPush, String targetApp);
 
 }

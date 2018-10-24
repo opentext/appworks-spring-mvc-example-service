@@ -84,7 +84,15 @@ public class GatewaySdkBeanImpl implements GatewaySdkBean {
     }
 
     @Override
-    public ResponseEntity sendTestNotification(String username, boolean sendPush) {
+    public ResponseEntity sendTestNotification(String username, boolean sendPush, String targetApp) {
+        if (isNullOrEmpty(username)) {
+            throw new IllegalArgumentException("User name must be specified");
+        }
+
+        if (sendPush && !isNullOrEmpty(targetApp)) {
+            throw new IllegalArgumentException("A target app name must be supplied for push notifications");
+        }
+
         LOG.info("Checking current notifications bounds");
         NotificationSeqBounds notificationsMinMaxSeq = notificationsClient.getNotificationsMinMaxSeq();
         LOG.info("Checking current notifications bounds - {}", notificationsMinMaxSeq);
@@ -100,7 +108,7 @@ public class GatewaySdkBeanImpl implements GatewaySdkBean {
                                 .addUser(username)
                                 .addData("someKey", "someValue")
                                 .runtimes(runtimeIds));
-                notificationRequest.setTargetAppName("this-app-does-not-exist");
+                notificationRequest.setTargetAppName(targetApp);
 
                 LOG.info("Issuing push notification via the SDK - {}", notificationRequest);
                 sdkResponse = notificationsClient.sendFcmPushNotification(notificationRequest);
