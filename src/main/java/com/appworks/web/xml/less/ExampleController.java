@@ -57,10 +57,17 @@ public class ExampleController {
 
     @RequestMapping(value = "/mail", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity mail(@RequestParam("from") String from,
-                               @RequestParam("to") String to,
-                               @RequestParam(value = "async", defaultValue = "true") boolean sendAsync) {
+    public ResponseEntity sendMail(@RequestParam("from") String from,
+                                   @RequestParam("to") String to,
+                                   @RequestParam(value = "async", defaultValue = "true") boolean sendAsync) {
         return gatewaySdkBean.sendTestEmail(from, to, sendAsync);
+    }
+
+    @RequestMapping(value = "/notifications", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity sendNotification(@RequestParam("username") String username,
+                                           @RequestParam(value = "push", defaultValue = "true") boolean sendPush) {
+        return gatewaySdkBean.sendTestNotification(username, sendPush);
     }
 
 }
