@@ -12,7 +12,7 @@
         <spring.scope>compile</spring.scope>
         <spring.version>4.0.5.RELEASE</spring.version>
         <spring.web.scope>compile</spring.web.scope>
-        <app.properties.version>16.3.0</app.properties.version>
+        <app.properties.version>16.5.0</app.properties.version>
 
         <!-- Output artifact (zip) properties. -->
         <appworks.service.name>appworks-spring-mvc-service</appworks.service.name>
