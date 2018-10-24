@@ -14,7 +14,7 @@ import java.util.Set;
 public class WebXmlLessInitializer implements WebApplicationInitializer, ServletContainerInitializer {
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
+    public void onStartup(ServletContext servletContext) {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(Config.class);
 
@@ -27,7 +27,7 @@ public class WebXmlLessInitializer implements WebApplicationInitializer, Servlet
     }
 
     @Override
-    public void onStartup(Set<Class<?>> arg0, ServletContext arg1) throws ServletException {
+    public void onStartup(Set<Class<?>> arg0, ServletContext arg1) {
         onStartup(arg1);
     }
 

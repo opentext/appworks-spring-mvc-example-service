@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("unused")
 public class AppWorksSpringMVCService implements AWServiceContextHandler {
 
+    public static final String APP_NAME = "appworks-spring-mvc-service";
+
     private static final Logger LOG = LoggerFactory.getLogger(AppWorksSpringMVCService.class);
 
     // mark this method as the one that completes the deployment

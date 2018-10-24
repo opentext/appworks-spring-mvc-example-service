@@ -72,11 +72,30 @@
         </dependency>
 
         <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.10</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.opentext.otag.sdk</groupId>
             <artifactId>otag-service-development-kit</artifactId>
-            <version>16.3.0</version>
+            <version>16.5.2-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.opentext.otag.sdk.bus</groupId>
+            <artifactId>otag-sdk-bus</artifactId>
+            <version>16.5.2-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
