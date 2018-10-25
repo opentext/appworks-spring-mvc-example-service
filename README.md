@@ -1,4 +1,4 @@
-# AppWorks Spring MVC Service Example 16.3.0
+# AppWorks Spring MVC Service Example 16.5.0
 
 The project contains example code for an AppWorks 16.5.0 Service that uses the
 Spring MVC framework and does not contain a web.xml file. 
@@ -9,9 +9,9 @@ https://developer.opentext.com/awd/resources/articles/15239948/developer+guide+o
 
 ## Building the service
 
-This is a Java 8 project and uses Apache Maven to perform the build so you will both installed. Once built using this
+This is a Java 8 project and uses Apache Maven to perform the build. Once built using this
 project and will produce a zip (appworks-service-example_1.0.0.zip) in the `/target` directory that can be deployed
-to an AppWorks Gateway 16.2 instance. All you need to do is run `mvn clean package`.
+to an AppWorks Gateway 16.5.0 instance. All you need to do is run `mvn clean package`.
 
 Please review the pom.xml for the build process, but more importantly the service's code itself for information on
 how the AppWorks SDK works and how to build a minimal but functional AppWorks Spring MVC service.
