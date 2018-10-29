@@ -89,7 +89,7 @@ public class GatewaySdkBeanImpl implements GatewaySdkBean {
             throw new IllegalArgumentException("User name must be specified");
         }
 
-        if (sendPush && !isNullOrEmpty(targetApp)) {
+        if (sendPush && isNullOrEmpty(targetApp)) {
             throw new IllegalArgumentException("A target app name must be supplied for push notifications");
         }
 
