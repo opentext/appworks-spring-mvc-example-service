@@ -106,6 +106,9 @@ public class GatewaySdkBeanImpl implements GatewaySdkBean {
                 FcmPushNotificationRequest notificationRequest = new FcmPushNotificationRequest(
                         new ClientPushNotificationRequest.Builder()
                                 .addUser(username)
+                                .title("Test message title")
+                                .summary("This is the body of a test message, issued by the AppWorks SDK, " +
+                                        "from you example service.")
                                 .addData("someKey", "someValue")
                                 .runtimes(runtimeIds));
                 notificationRequest.setTargetAppName(targetApp);
