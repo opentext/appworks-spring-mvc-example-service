@@ -108,7 +108,7 @@ public class GatewaySdkBeanImpl implements GatewaySdkBean {
                                 .addUser(username)
                                 .title("Test message title")
                                 .summary("This is the body of a test message, issued by the AppWorks SDK, " +
-                                        "from you example service.")
+                                        "from the example service.")
                                 .addData("someKey", "someValue")
                                 .runtimes(runtimeIds));
                 notificationRequest.setTargetAppName(targetApp);
