@@ -10,7 +10,7 @@
     
     <properties>
         <spring.scope>compile</spring.scope>
-        <spring.version>5.1.1.RELEASE</spring.version>
+        <spring.version>5.2.3.RELEASE</spring.version>
         <spring.web.scope>compile</spring.web.scope>
         <app.properties.version>16.5.1</app.properties.version>
 
